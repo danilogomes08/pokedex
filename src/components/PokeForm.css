@@ -1,0 +1,38 @@
+.PokeForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+  
+  .InputPoke {
+    border-style: none;
+    border-radius: 5px;
+    padding: 10px 10px;
+    width: 235px;
+  }
+  
+  .InputPoke:focus {
+    outline: 0
+  }
+  
+  .PokeButton {
+    border-style: none;
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 10px 25px;
+    background-color: #ffcb05;
+    color: #3269b2;
+    font-weight: 700;
+  }
+  
+  .RandomButton {
+    border-style: none;
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 10px 25px;
+    background-color: #3269b2;
+    color: #ffcb05;
+    font-weight: 700;
+  }
