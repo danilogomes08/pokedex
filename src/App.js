@@ -1,8 +1,9 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react'
 import Axios from 'axios';
 import PokeForm from './components/PokeForm'
 import PokeInfos from './components/PokeInfos'
+import Pokedex from './img/pokedex-logo.png'
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
           name: resp.data.name,
           id: resp.data.id,
           abilities: resp.data.abilities[0].ability.name,
-          image: resp.data.sprites.front_default,
+          image: resp.data.sprites.versions['generation-v']['black-white'].animated.front_default,
           type: resp.data.types[0].type.name,
           moves: resp.data.moves[0].move.name,
           hp: resp.data.stats[0].base_stat
@@ -75,7 +76,7 @@ function App() {
   return (
     <div className="App">
 
-      <h1> Pokedex </h1>
+      <img src={Pokedex} />
 
       <PokeForm
         handleChange={(e) => { setpokemonName(e.target.value) }}
@@ -98,6 +99,7 @@ function App() {
       ) : (
         false
       )}
+
 
     </div>
   );
