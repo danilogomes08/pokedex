@@ -3,6 +3,7 @@
 * {
   margin: 0;
   padding: 0;
+  /* box-sizing: border-box; */
 }
 
 body {
@@ -11,6 +12,12 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+.AllPoke {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 50px auto;
+}
 
 .App {
   display: flex;
@@ -18,6 +25,6 @@ body {
   align-items: center; 
   justify-content: center;
   height: 100vh;
-  max-width: 100%;
   margin: 0 auto;
+  max-width: 600px;
 }

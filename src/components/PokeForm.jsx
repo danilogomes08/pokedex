@@ -5,11 +5,11 @@ const PokeForm = props => {
 
   return (
     <div className="PokeForm">
-      <input className="InputPoke" type="text"
-        placeholder="Search for a pokemon"
-        onChange={props.handleChange}
-        value={props.value}
-      />
+        <input className="InputPoke" type="text"
+          placeholder="Search for a pokemon"
+          onChange={props.handleChange}
+          value={props.value}
+        />
 
       <div className="ButtomForm">
         <button className="PokeButton"

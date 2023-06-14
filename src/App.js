@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react'
 import Axios from 'axios';
 import PokeForm from './components/PokeForm'
+import AllPoke from './components/AllPoke'
 import PokeInfos from './components/PokeInfos'
 import Pokedex from './img/pokedex-logo.png'
 
@@ -10,6 +11,8 @@ function App() {
 
   const [pokemonName, setpokemonName] = useState('')
   const [pokemonData, setpokemonData] = useState({})
+  const [allPokemons, setAllPokemons] = useState([])
+  const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
 
   const searchPokemon = () => {
     const pokemon = pokemonName.toLowerCase().split(" ").join("");
@@ -19,7 +22,9 @@ function App() {
           name: resp.data.name,
           id: resp.data.id,
           abilities: resp.data.abilities[0].ability.name,
-          image: resp.data.sprites.front_default,
+          image: resp.data.sprites.versions['generation-v']['black-white'].animated.front_default 
+          ? resp.data.sprites.versions['generation-v']['black-white'].animated.front_default 
+          : resp.data.sprites.front_default,
           type: resp.data.types[0].type.name,
           moves: resp.data.moves[0].move.name,
           hp: resp.data.stats[0].base_stat
@@ -37,7 +42,9 @@ function App() {
           name: resp.data.name,
           id: resp.data.id,
           abilities: resp.data.abilities[0].ability.name,
-          image: resp.data.sprites.versions['generation-v']['black-white'].animated.front_default,
+          image: resp.data.sprites.versions['generation-v']['black-white'].animated.front_default 
+          ? resp.data.sprites.versions['generation-v']['black-white'].animated.front_default 
+          : resp.data.sprites.front_default,
           type: resp.data.types[0].type.name,
           moves: resp.data.moves[0].move.name,
           hp: resp.data.stats[0].base_stat
@@ -47,9 +54,51 @@ function App() {
     clear()
   }
 
-  const clear = () => {
-    setpokemonName('')
-  }
+//   console.log(allPokemons)
+
+//   const getAllPokemons = async () => {
+//    const res = await fetch(loadMore)
+//    const data = await res.json()
+
+//    setLoadMore(data.next)
+
+//    function createPokemonObject(results)  {
+//      results.forEach( async pokemon => {
+//        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+//        const data =  await res.json()
+//        setAllPokemons( currentList => [...currentList, data])
+//        await allPokemons.sort((a, b) => a.id - b.id)
+//      })
+//    }
+//    createPokemonObject(data.results)
+// }
+
+// useEffect(() => {
+//   getAllPokemons()
+//   }, [])
+
+
+//   const typePokemonAll = () => {
+//     if (allPokemons.type === "fairy") return "Fairy"
+//     if (allPokemons.type === "steel") return "Steel"
+//     if (allPokemons.type === "dark") return "Dark"
+//     if (allPokemons.type === "dragon") return "Dragon"
+//     if (allPokemons.type === "ghost") return "Ghost"
+//     if (allPokemons.type === "rock") return "Rock"
+//     if (allPokemons.type === "bug") return "Bug"
+//     if (allPokemons.type === "psychic") return "Psychic"
+//     if (allPokemons.type === "ground") return "Ground"
+//     if (allPokemons.type === "poison") return "Poison"
+//     if (allPokemons.type === "fighting") return "Fighting"
+//     if (allPokemons.type === "ice") return "Ice"
+//     if (allPokemons.type === "grass") return "Grass"
+//     if (allPokemons.type === "electric") return "Electric"
+//     if (allPokemons.type === "normal") return "Normal"
+//     if (allPokemons.type === "water") return "Water"
+//     if (allPokemons.type === "fire") return "Fire"
+
+//     return ""
+//   }
 
   const typePokemon = () => {
     if (pokemonData.type === "fairy") return "Fairy"
@@ -73,10 +122,28 @@ function App() {
     return ""
   }
 
+  const clear = () => {
+    setpokemonName('')
+  }
+
   return (
     <div className="App">
 
       <img src={Pokedex} />
+
+      {/* <div className="AllPoke">
+        { allPokemons.map( (pokemon, index) =>
+        
+          <AllPoke 
+              id={pokemon.id}
+              img={pokemon.sprites.versions['generation-v']['black-white'].animated.front_default}
+              name={pokemon.name}
+              key={index}
+              typePokemon={typePokemonAll()}
+          />
+        )}
+      </div> */}
+
 
       <PokeForm
         handleChange={(e) => { setpokemonName(e.target.value) }}
@@ -99,7 +166,6 @@ function App() {
       ) : (
         false
       )}
-
 
     </div>
   );

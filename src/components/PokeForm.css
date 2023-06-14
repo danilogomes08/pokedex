@@ -2,21 +2,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
+    margin-top: 20px;
     flex-wrap: wrap;
-    width: 50%;
+    width: 100%;
   }
 
   .ButtomForm {
     max-width: 50%;
+    margin-bottom: 10px;
   }
 
   .InputPoke {
     border-style: none;
     border-radius: 5px;
     padding: 10px 10px;
-    width: 50%;
+    width: 60%;
     margin-right: 10px;
+    margin-bottom: 10px;
   }
   
   .InputPoke:focus {
@@ -44,14 +46,13 @@
     cursor: pointer;
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 700px) {
     .PokeForm {
       flex-direction: column;
-      width: 100%;
+      max-width: 100%;
     }
     .ButtomForm {
       max-width: 100%;
-      margin-top: 10px;
     }
     div .RandomButton {
       padding: 15px 40px;
@@ -59,11 +60,9 @@
     div .PokeButton {
       padding: 15px 43px;
     }
-    .PokeForm {
-      margin-bottom: 20px;
-    }
     .InputPoke {
       margin-right: 0;
+      width: 50%
     }
   }
   
